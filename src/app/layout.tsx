@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "TodoApp by Zachari Iligan",
   description: "the backend was done in a rush hahahahaha",
+  verification: {
+    google: "PBfzmt98FVGiJWm81wPD5bVI3AJD9uigb1SlM8KaNcM"
+  },
 };
 
 export default function RootLayout({
@@ -26,6 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
