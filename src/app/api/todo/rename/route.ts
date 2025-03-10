@@ -1,7 +1,6 @@
+import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
 
 export async function PATCH(req: Request) {
     try {
@@ -11,6 +10,8 @@ export async function PATCH(req: Request) {
             return NextResponse.json({ message: 'ID and title are required' }, { status: 400 });
         }
 
+
+        // equivalent to : UPDATE todo SET title = title WHERE id = id
         const updatedTodo = await prisma.todo.update({
             where: { id },
             data: { title },

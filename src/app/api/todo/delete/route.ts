@@ -1,11 +1,12 @@
+import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
 
 export async function DELETE(req: Request) {
     try {
         const { id } = await req.json();
+
+        // equivalent to : UPDATE todo SET deleted = true WHERE id = id
         await prisma.todo.update({
             where: { id },
             data: { deleted: true },

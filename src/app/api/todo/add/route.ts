@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 
-const prisma = new PrismaClient();
+
 
 export async function POST(req: Request) {
     try {
         const { title, description } = await req.json();
+        // equivalent to : INSERT INTO todo (title, description, completed) VALUES (title, description, false)
         const newTodo = await prisma.todo.create({
             data: { title, description, completed: false },
         });
