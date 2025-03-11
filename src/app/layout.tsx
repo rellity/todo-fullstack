@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/react"
 import ReactQueryProvider from "@/lib/query/react-query-provider";
 
 const geistSans = Geist({
@@ -36,6 +37,7 @@ export default function RootLayout({
         <Toaster richColors />
         <ReactQueryProvider>
           {children}
+          <Analytics />
         </ReactQueryProvider>
       </body>
     </html>
