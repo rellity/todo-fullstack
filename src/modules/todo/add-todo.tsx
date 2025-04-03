@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader2, Plus } from "lucide-react"
 
+import { sendGTMEvent } from '@next/third-parties/google'
+
 type AddTodoProps = {
     onAdd: (text: string) => void
     adding: string
@@ -32,7 +34,12 @@ export function AddTodo({ onAdd, adding }: AddTodoProps) {
                 onChange={(e) => setText(e.target.value)}
                 className="flex-1"
             />
-            <Button variant="outline" type="submit" size="icon" disabled={adding === "pending"}>
+            <Button variant="outline" type="submit" size="icon" disabled={adding === "pending"} onClick={
+                () => sendGTMEvent({
+                    event: 'add_todo',
+                    todo_text: text,
+                })
+            }>
                 {adding === "pending" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
                 <span className="sr-only">Add todo</span>
             </Button>

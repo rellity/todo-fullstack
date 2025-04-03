@@ -24,6 +24,7 @@ export const metadata: Metadata = {
   },
 
 
+
 };
 
 export default function RootLayout({
@@ -34,7 +35,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GoogleTagManager gtmId="G-WP93BPZC3T" />
-
 
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

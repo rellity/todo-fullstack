@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { v4 as uuidv4 } from "uuid"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AddTodo } from "./add-todo"
@@ -12,6 +12,7 @@ import { Loader2 } from "lucide-react"
 import { useDeleteTodos } from "@/react-query/mutations/delete-todos"
 import { useToggleTodo } from "@/react-query/mutations/toggle-todo"
 import { useRenameTodo } from "@/react-query/mutations/rename-todo"
+import { sendGTMEvent } from '@next/third-parties/google'
 
 
 
@@ -23,6 +24,17 @@ export default function TodoList() {
     const renametodo = useRenameTodo();
 
     const [filter, setFilter] = useState<"all" | "active" | "completed">("all")
+
+
+    useEffect(() => {
+        sendGTMEvent({
+            event: 'page_view',
+            page_title: 'Todo List',
+            page_path: '/todo',
+            page_location: window.location.href,
+        })
+    }, [])
+
 
     const addTodo = (text: string) => {
         if (text.trim()) {
