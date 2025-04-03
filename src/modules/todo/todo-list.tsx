@@ -12,7 +12,7 @@ import { Loader2 } from "lucide-react"
 import { useDeleteTodos } from "@/react-query/mutations/delete-todos"
 import { useToggleTodo } from "@/react-query/mutations/toggle-todo"
 import { useRenameTodo } from "@/react-query/mutations/rename-todo"
-import { sendGTMEvent } from '@next/third-parties/google'
+import { trackEvent } from "@/lib/googleanalytics"
 
 
 
@@ -27,12 +27,7 @@ export default function TodoList() {
 
 
     useEffect(() => {
-        sendGTMEvent({
-            event: 'page_view',
-            page_title: 'Todo List',
-            page_path: '/todo',
-            page_location: window.location.href,
-        })
+        trackEvent("page_view", "todo", "todo_list")
     }, [])
 
 
