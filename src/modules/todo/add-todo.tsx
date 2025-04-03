@@ -18,6 +18,7 @@ export function AddTodo({ onAdd, adding }: AddTodoProps) {
     const [text, setText] = useState("")
 
     const handleSubmit = (e: React.FormEvent) => {
+
         e.preventDefault()
         if (text.trim()) {
             onAdd(text)

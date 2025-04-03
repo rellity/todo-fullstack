@@ -4,7 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react"
 import ReactQueryProvider from "@/lib/query/react-query-provider";
-import { GoogleTagManager } from '@next/third-parties/google'
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +34,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="G-WP93BPZC3T" />
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-WP93BPZC3T"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-WP93BPZC3T', {
+            page_path: window.location.pathname,
+          });
+        `}
+      </Script>
 
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
