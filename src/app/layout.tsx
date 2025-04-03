@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react"
 import ReactQueryProvider from "@/lib/query/react-query-provider";
+import { GoogleTagManager } from '@next/third-parties/google'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
   verification: {
     google: "PBfzmt98FVGiJWm81wPD5bVI3AJD9uigb1SlM8KaNcM"
   },
+
+
 };
 
 export default function RootLayout({
@@ -30,6 +33,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="G-WP93BPZC3T" />
+
 
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
